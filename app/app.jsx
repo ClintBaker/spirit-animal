@@ -5,7 +5,20 @@ var {hashHistory} = require('react-router');
 
 var actions = require('actions');
 var store = require('configureStore').configure();
+import firebase from 'app/firebase/index';
 import router from 'app/router/index';
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    store.dispatch(actions.login(user.uid));
+    hashHistory.push('/spirit-animals');
+  } else {
+    store.dispatch(actions.logout());
+    hashHistory.push('/');
+  }
+});
+
+
 
 // Load foundation
 $(document).foundation();

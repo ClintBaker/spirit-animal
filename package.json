@@ -12,6 +12,9 @@
   "dependencies": {
     "axios": "^0.9.1",
     "express": "^4.13.4",
+    "firebase": "^4.1.1",
+    "node-env-file": "^0.1.8",
+    "path": "^0.12.7",
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",

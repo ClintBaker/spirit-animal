@@ -11,7 +11,10 @@ export var authReducer = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
-        uid: action.uid
+        uid: action.uid,
+        token: action.token,
+        userPhoto: action.userPhoto,
+        displayName: action.displayName
       };
     case 'LOGOUT':
       return {};

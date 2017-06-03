@@ -19,6 +19,11 @@ class SpiritAnimal extends React.Component {
       <div>
         <h1>Spirit Animal Main</h1>
         <h3>Id: {auth.uid}</h3>
+        <p>Token: {auth.token}</p>
+        <p>User: {auth.userPhoto}</p>
+        <h5>{auth.displayName}</h5>
+        <img src={auth.userPhoto} alt="user image" />
+        <br />
         <button className="button secondary align-right" onClick={this.onLogout}>Logout</button>
       </div>
     );

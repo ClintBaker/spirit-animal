@@ -10,10 +10,14 @@ import router from 'app/router/index';
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    store.dispatch(actions.login(user.uid));
+    console.log(user);
+    // store.dispatch(actions.login(user.uid, user.token));
+    // store.dispatch(actions.storeToken(user.token));
+    // store.dispatch(actions.populateUserInfo(user.photoURL, user.displayName));
     hashHistory.push('/spirit-animals');
+    // store.dispatch(actions.populateFriendsList());
   } else {
-    store.dispatch(actions.logout());
+    // store.dispatch(actions.logout());
     hashHistory.push('/');
   }
 });

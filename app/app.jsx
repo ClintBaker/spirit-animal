@@ -12,6 +12,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     console.log(user);
     store.dispatch(actions.populateAuth());
+    store.dispatch(actions.startAddUsers());
     // store.dispatch(actions.login(user.uid, user.token));
     // store.dispatch(actions.storeToken(user.token));
     // store.dispatch(actions.populateUserInfo(user.photoURL, user.displayName));

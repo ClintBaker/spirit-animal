@@ -4,6 +4,7 @@ import firebase from 'app/firebase/index'
 
 import Landing from 'Landing';
 import SpiritAnimal from './../components/SpiritAnimal';
+import Safari from 'Safari';
 
 var requireLogin = (nextState, replace, next) => {
   if (!firebase.auth().currentUser) {
@@ -22,6 +23,7 @@ export default (
   <Router history={hashHistory}>
     <Route path="/">
       <Route path="spirit-animals" component={SpiritAnimal} onEnter={requireLogin} />
+      <Route path="safari" component={Safari} onEnter={requireLogin} />
       <IndexRoute component={Landing} onEnter={redirectIfLoggedIn} />
     </Route>
   </Router>

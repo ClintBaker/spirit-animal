@@ -1,7 +1,9 @@
 import React from 'react';
 import * as Redux from 'react-redux';
 import * as actions from 'actions';
+
 import UploadImage from 'UploadImage';
+import Nav from 'Nav';
 
 class SpiritAnimal extends React.Component {
   constructor (props) {
@@ -18,6 +20,7 @@ class SpiritAnimal extends React.Component {
     var {dispatch, auth} = this.props;
     return (
       <div>
+        <Nav />
         <h1>Spirit Animal Main</h1>
         <h3>Id: {auth.uid}</h3>
         <p>Token: {auth.token}</p>

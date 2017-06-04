@@ -98,3 +98,52 @@ export var populateAuth = () => {
     });
   };
 };
+
+// export var populateSafari = () => {
+//   return (dispatch, getState) => {
+//     var uid = getState().auth.uid;
+//     var usersRef = firebaseRef.child('users');
+//
+//     return usersRef.once('value').then((snapshot) => {
+//       var users = snapshot.val() || ''; //users object
+//       //turn into array
+//       var usersFinalArray = users.forEach((user) => {
+//         var userVoteRef = firebase.child(`users/${uid}/votes/${user}`)
+//         return userVoteRef.once('value').then((snapshot) => {
+//           var userRef = snapshot.val() || '';
+//           if (userRef !== user) {
+//             return user;
+//           }
+//         });
+//       });
+//
+//     });
+//   };
+// };
+
+export var addUsers = (users) => {
+  return {
+    type: 'ADD_USERS',
+    users
+  }
+};
+
+export var startAddUsers = () => {
+  return (dispatch, getState) => {
+    var uid = getState().auth.uid;
+    var usersRef = firebaseRef.child('users');
+
+    return usersRef.once('value').then((snapshot) => {
+      console.log(snapshot.val());
+      var users = snapshot.val() || {};
+      var parsedUsers = [];
+
+      Object.keys(users).forEach((userId) => {
+        parsedUsers.push(userId);
+      });
+      console.log(parsedUsers);
+
+      dispatch(addUsers(parsedUsers));
+    });
+  }
+}

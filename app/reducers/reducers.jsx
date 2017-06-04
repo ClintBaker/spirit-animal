@@ -1,12 +1,3 @@
-export var animalReducer = (state = '', action) => {
-  switch(action.type) {
-    case 'SET_ANIMAL':
-      return action.animal;
-    default:
-      return state;
-  };
-};
-
 export var authReducer = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN':
@@ -40,10 +31,15 @@ export var usersReducer = (state = [], action) => {
   }
 }
 
-export var userVoteReducer = (state = '', action) => {
+export var userVoteReducer = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_USER_VOTE':
-      return action.url;
+      return {
+        ...state,
+        url: action.url,
+        id: action.id,
+        name: action.name
+      }
     default:
       return state;
   }

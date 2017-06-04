@@ -13,3 +13,5 @@ Spirit Animal React App
 *Config file was saved in previous commit, you're going to need to create a new Firebase database before production so no one has that info
 
 Figure out how to remove images from Cloudinary when user changes profile pic for efficiency sake.
+
+*Start Login is inefficient (action).  You save the user's displayName to firebase every time they login.  Work on that when you have time.

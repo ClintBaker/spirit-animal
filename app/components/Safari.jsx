@@ -10,6 +10,7 @@ class Safari extends React.Component {
   constructor (props) {
     super(props);
     this.populateUsers = this.populateUsers.bind(this);
+    this.onClick = this.onClick.bind(this);
   }
   populateUsers () {
     var {users} = this.props;
@@ -21,6 +22,13 @@ class Safari extends React.Component {
       });
     }
   }
+  onClick (e) {
+    e.preventDefault();
+    var {dispatch, auth, userVote} = this.props;
+    var animal = this.refs.animal.value;
+    this.refs.animal.value = '';
+    dispatch(actions.startUpdateAnimal(animal));
+  }
   render () {
     var {dispatch, auth, users, userVote} = this.props;
     dispatch(actions.startUserVote());
@@ -31,8 +39,18 @@ class Safari extends React.Component {
         <ul>
           {this.populateUsers()}
         </ul>
-        <h4>Tony:</h4>
-        <img src={userVote} />
+        <div>
+          <h4>Nombre</h4>
+          {userVote.url === undefined ? <p>You have voted on all available users.  Invite more friends and come back later!</p> : <img src={userVote.url} /> }
+        </div>
+        <div>
+          <form>
+            <h3>Enter animal</h3>
+            <input type="text" ref="animal" placeholder="Enter your animal type" />
+            <button className="button" onClick={this.onClick} autoFocus="true">Submit</button>
+          </form>
+        </div>
+
       </div>
     );
   }

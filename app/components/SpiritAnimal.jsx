@@ -4,6 +4,7 @@ import * as actions from 'actions';
 
 import UploadImage from 'UploadImage';
 import Nav from 'Nav';
+import MyState from 'MyStats';
 
 class SpiritAnimal extends React.Component {
   constructor (props) {
@@ -33,6 +34,7 @@ class SpiritAnimal extends React.Component {
         </div>
         <button className="button secondary align-right" onClick={this.onLogout}>Logout</button>
         <UploadImage />
+        <MyStats />
       </div>
     );
   }

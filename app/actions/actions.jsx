@@ -2,13 +2,6 @@ import firebase, {firebaseRef, facebookProvider} from 'app/firebase/index'
 import request from 'superagent';
 import $ from 'jquery'
 
-export var setAnimal = (animal) => {
-  return {
-    type: 'SET_ANIMAL',
-    animal
-  };
-};
-
 export var login = (uid, token, userPhoto, displayName) => {
   return {
     type: 'LOGIN',
@@ -24,6 +17,7 @@ export var startLogin = () => {
     return firebase.auth().signInWithPopup(facebookProvider).then((result) => {
       var token = result.credential.accessToken;
       dispatch(login(result.user.uid, token, result.user.photoURL, result.user.displayName));
+      var nameRef = firebaseRef.child(`users/${result.user.uid}/name`).set(result.user.displayName);
     }, (e) => {
       console.log('can\'t auth', e);
     });
@@ -97,28 +91,6 @@ export var populateAuth = () => {
   };
 };
 
-// export var populateSafari = () => {
-//   return (dispatch, getState) => {
-//     var uid = getState().auth.uid;
-//     var usersRef = firebaseRef.child('users');
-//
-//     return usersRef.once('value').then((snapshot) => {
-//       var users = snapshot.val() || ''; //users object
-//       //turn into array
-//       var usersFinalArray = users.forEach((user) => {
-//         var userVoteRef = firebase.child(`users/${uid}/votes/${user}`)
-//         return userVoteRef.once('value').then((snapshot) => {
-//           var userRef = snapshot.val() || '';
-//           if (userRef !== user) {
-//             return user;
-//           }
-//         });
-//       });
-//
-//     });
-//   };
-// };
-
 export var addUsers = (users) => {
   return {
     type: 'ADD_USERS',
@@ -144,10 +116,19 @@ export var startAddUsers = () => {
   }
 };
 
-export var addUserVote = (url) => {
+export var addUserVote = (url, name, id) => {
   return {
     type: 'ADD_USER_VOTE',
-    url
+    url,
+    name,
+    id
+  }
+};
+
+export var addVoteName = (name) => {
+  return {
+    type: 'ADD_VOTE_NAME',
+    name
   }
 };
 
@@ -175,10 +156,27 @@ export var startUserVote = () => {
       });
 
       var id = finalBoss[0];
-      var imgRef = firebaseRef.child(`users/${id}/img`);
+      var imgRef = firebaseRef.child(`users/${id}`);
       return imgRef.once('value').then((snapshot) => {
-        var imgSrc = snapshot.val() || '';
-        dispatch(addUserVote(imgSrc));
+        var imgSrc = snapshot.val() || {};
+        var key = snapshot.key;
+        dispatch(addUserVote(imgSrc.img, imgSrc.name, key));
+      });
+    });
+  };
+};
+
+export var startUpdateAnimal = (animal) => {
+  return (dispatch, getState) => {
+    var uid = getState().auth.uid;
+    var receiverId = getState().userVote.id;
+
+    var receiverRef = firebaseRef.child(`users/${receiverId}/animal/${animal}`).push({uid: uid});
+    return receiverRef.then(() => {
+      var userRef = firebaseRef.child(`users/${uid}/votes/${receiverId}`).push({animal: animal});
+      return userRef.then(() => {
+        dispatch(startAddUsers());
+        dispatch(startUserVote());
       });
     });
   };

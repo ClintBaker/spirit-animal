@@ -15,3 +15,7 @@ Spirit Animal React App
 Figure out how to remove images from Cloudinary when user changes profile pic for efficiency sake.
 
 *Start Login is inefficient (action).  You save the user's displayName to firebase every time they login.  Work on that when you have time.
+
+*Still need to optimize startUserVote action (and when it gets called);
+
+*Actions startMyStats address async inefficiencies with firebase call, and then dispatch twice (inside of forEach loop);

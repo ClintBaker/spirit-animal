@@ -4,7 +4,7 @@ import * as actions from 'actions';
 
 import UploadImage from 'UploadImage';
 import Nav from 'Nav';
-import MyState from 'MyStats';
+import MyStats from 'MyStats';
 
 class SpiritAnimal extends React.Component {
   constructor (props) {

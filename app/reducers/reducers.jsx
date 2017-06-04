@@ -15,6 +15,12 @@ export var authReducer = (state = {}, action) => {
         ...state,
         userMainImage: action.url
       };
+    case 'MY_STATS':
+      return {
+        ...state,
+        myAnimals: action.animals,
+        myAnimalVotes: action.votes
+      }
     default:
       return state;
   }

@@ -18,11 +18,13 @@
     "react": "^0.14.7",
     "react-addons-test-utils": "^0.14.7",
     "react-dom": "^0.14.7",
+    "react-dropzone": "^3.13.2",
     "react-redux": "^5.0.5",
     "react-router": "^2.0.0",
     "redux": "^3.6.0",
     "redux-axios-middleware": "^4.0.0",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.5.1",

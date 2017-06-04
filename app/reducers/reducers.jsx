@@ -39,3 +39,12 @@ export var usersReducer = (state = [], action) => {
       return state;
   }
 }
+
+export var userVoteReducer = (state = '', action) => {
+  switch (action.type) {
+    case 'ADD_USER_VOTE':
+      return action.url;
+    default:
+      return state;
+  }
+}

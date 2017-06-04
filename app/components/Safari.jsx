@@ -1,8 +1,10 @@
 import React from 'react';
 import * as Redux from 'react-redux';
 import * as actions from 'actions';
+import firebase, {firebaseRef} from 'app/firebase/index';
 
 import Nav from 'Nav';
+import {filterUsers} from './../api/filterUsers';
 
 class Safari extends React.Component {
   constructor (props) {
@@ -20,7 +22,8 @@ class Safari extends React.Component {
     }
   }
   render () {
-    var {dispatch, auth, users} = this.props;
+    var {dispatch, auth, users, userVote} = this.props;
+    dispatch(actions.startUserVote());
     return (
       <div>
         <Nav />
@@ -28,7 +31,8 @@ class Safari extends React.Component {
         <ul>
           {this.populateUsers()}
         </ul>
-        <img src={} />
+        <h4>Tony:</h4>
+        <img src={userVote} />
       </div>
     );
   }
@@ -38,7 +42,8 @@ export default Redux.connect(
   (state) => {
     return {
       auth: state.auth,
-      users: state.users
+      users: state.users,
+      userVote: state.userVote
     }
   }
 )(Safari);

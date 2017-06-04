@@ -10,7 +10,6 @@ import router from 'app/router/index';
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log(user);
     store.dispatch(actions.populateAuth());
     store.dispatch(actions.startAddUsers());
     // store.dispatch(actions.login(user.uid, user.token));

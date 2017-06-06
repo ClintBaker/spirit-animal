@@ -11,10 +11,11 @@ export class Landing extends React.Component {
   }
   render () {
     return (
-      <div>
-        <h1 className="page-title">Spirit Animal Club</h1>
-        <Login />
-      </div>
+        <div>
+          <img src={"https://images.pexels.com/photos/37833/rainbow-lorikeet-parrots-australia-rainbow-37833.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"} className="bg" />
+          <h1 className="page-title center border-logo">Spirit Animal Club</h1>
+          <Login />
+        </div>
     )
   }
 }

@@ -30,21 +30,7 @@ class MyStats extends React.Component {
   }
   render () {
     return (
-      <div>
-        <h3>My Animals and Votes</h3>
-        <div className="row">
-          <div className="medium-5 columns">
-            <ul>
-              {this.populateMyAnimals()}
-            </ul>
-          </div>
-          <div className="medium-5 columns">
-            <ul>
-              {this.populateMyVotes()}
-            </ul>
-          </div>
-        </div>
-      </div>
+      <div></div>
     );
   }
 }

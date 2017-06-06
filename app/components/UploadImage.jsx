@@ -9,6 +9,7 @@ export class UploadImage extends React.Component {
     super(props);
     this.onImageDrop = this.onImageDrop.bind(this);
     this.renderDropzoneText = this.renderDropzoneText.bind(this);
+    this.renderButtonText = this.renderButtonText.bind(this);
   }
   onImageDrop (files) {
     const {dispatch} = this.props;
@@ -18,20 +19,32 @@ export class UploadImage extends React.Component {
     const {auth} = this.props;
     if (auth.userMainImage) {
       return (
-        <p>Click here or drag in an image file to change your user image</p>
+        <p>Click below to change your profile picture</p>
       );
     } else {
       return (
-        <p>Upload a photo of yourself and begin the journey to finding your spirit animal.</p>
+        <p>Upload an image of yourself and begin the journey to finding your spirit animal.</p>
+      );
+    }
+  }
+  renderButtonText () {
+    const {auth} = this.props;
+    if (auth.userMainImage) {
+      return (
+        "Change image"
+      );
+    } else {
+      return (
+        "Upload image"
       );
     }
   }
   render () {
     var {dispatch, auth} = this.props;
     return (
-      <div>
-        <Dropzone multiple={false} accept="image/*" onDrop={this.onImageDrop}>
-          {this.renderDropzoneText()}
+      <div className="text-center">
+        <Dropzone multiple={false} accept="image/*" onDrop={this.onImageDrop} className="dz dz-center button">
+        {this.renderButtonText()}
         </Dropzone>
         {/* <div className="render-preview">
           <div>

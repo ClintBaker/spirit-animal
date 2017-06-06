@@ -74,7 +74,6 @@ export var startImageUpload = (file) => {
         return imageRef.then(() => {
           dispatch(imageUpload(response.body.secure_url));
         });
-        //save to firebase using getState() for user id (auth.uid) (const {auth} = getState()) (const uid = auth.uid)
       }
     })
   }
@@ -203,32 +202,17 @@ export var startMyStats = () => {
       var animalArray = Object.keys(animalObj).forEach((animal) => {
         myAnimals.push(animal);
       });
-
-      // console.log(myAnimals);
       var votesArray = [];
 
       var arr = myAnimals.forEach((animal) => {
         return animalRef.child(animal).once('value').then((snapshot) => {
           var anVotesObj = snapshot.val() || {};
           var totalVotes = Object.keys(anVotesObj).length;
-          // console.log(totalVotes);
           votesArray.push(totalVotes);
         }).then(() => {
-          // console.log(votesArray);
-          // console.log(myAnimals);
           dispatch(myStats(myAnimals, votesArray));
         });
-
-        // console.log(myAnimals);
-        // console.log(votesArray);
-        // dispatch(myStats(myAnimals, votesArray));
       });
-
-      // console.log('Votes Array', votesArray);
-      // console.log(votesArray[0]);
-      // console.log(votesArray[1]);
-
-      // var customArr = ['Gorilla', 'Monster'];
     });
   };
 };

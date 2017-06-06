@@ -1,0 +1,73 @@
+.container {
+  div {
+    box-sizing: border-box;
+  }
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-flow: row wrap;
+
+  height: 34rem;
+  border: 1px solid $grey;
+  margin-bottom: .5rem;
+}
+
+.circle {
+  border: 1px solid #e8e8e8;
+  background-color: $grey;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 50%;
+  margin: 0.5em;
+  margin-top: 5rem;
+}
+
+.circle.kitten {
+  background-size: cover;
+  background-repeat: none;
+  background-position: center center;
+}
+
+.circle-image {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.aligner {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.fullWidth {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: initial;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.bg-color {
+  background-color: #E8E8E8;
+    /* Set rules to fill background */
+    min-height: 100%;
+    min-width: 1024px;
+
+    /* Set up proportionate scaling */
+    width: 100%;
+    height: auto;
+
+    /* Set up positioning */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}

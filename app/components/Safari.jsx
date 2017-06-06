@@ -11,6 +11,27 @@ class Safari extends React.Component {
     super(props);
     this.populateUsers = this.populateUsers.bind(this);
     this.onClick = this.onClick.bind(this);
+    this.renderImage = this.renderImage.bind(this);
+  }
+  renderImage () {
+    var {auth, userVote} = this.props;
+    if (userVote.url) {
+      return (
+        <div className="circle kitten" style={{backgroundImage: 'url(' + userVote.url + ')'}} alt="user image">
+              <div className="aligner">
+              </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="circle">
+          <div className="aligner">
+            <p>Could not locate image</p>
+          </div>
+        </div>
+
+      );
+    }
   }
   populateUsers () {
     var {users} = this.props;
@@ -35,17 +56,13 @@ class Safari extends React.Component {
     return (
       <div>
         <Nav />
-        <h5>Users</h5>
-        <ul>
-          {this.populateUsers()}
-        </ul>
-        <div>
-          <h4>Nombre</h4>
-          {userVote.url === undefined ? <p>You have voted on all available users.  Invite more friends and come back later!</p> : <img src={userVote.url} /> }
-        </div>
-        <div>
+        <h4 className="center">{userVote.name}</h4>
+          <div className="safari-flex">
+            {userVote.url === undefined ? <p>You have voted on all available users.  Invite more friends and come back later!</p> : this.renderImage()}
+          </div>
+        <div className="safari-flex aI">
           <form>
-            <h3>Enter animal</h3>
+            <h6>Enter animal</h6>
             <input type="text" ref="animal" placeholder="Enter your animal type" />
             <button className="button" onClick={this.onClick} autoFocus="true">Submit</button>
           </form>

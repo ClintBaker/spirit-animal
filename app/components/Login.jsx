@@ -15,12 +15,12 @@ class Login extends React.Component {
   }
   render () {
     return (
-      <div>
-        <div className="row">
+      <div className="center">
+        <div className="row callout-auth-main">
           <div className="columns small-centered small-10 medium-6 large-4">
             <div className="callout callout-auth">
               <h3>Login</h3>
-              <p>Login with Facebook account below</p>
+              <p>Login with Facebook to get started.</p>
               <button className="button primary" onClick={this.onLogin}>Login with Facebook</button>
             </div>
           </div>
